@@ -13,11 +13,10 @@ function CreateTrimmedNull(comp, layer) {
     nullLayer.inPoint = layer.inPoint;
     nullLayer.outPoint = layer.outPoint;
 
-	// reopen edited properties
+    // reopen edited properties
     //app.executeCommand(2065);
 
-    //end the undo group
-    app.endUndoGroup();
+    app.endUndoGroup(); //end the undo group
 }
 
 function main() {
