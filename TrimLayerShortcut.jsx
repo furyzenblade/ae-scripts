@@ -1,18 +1,17 @@
-main();
+(function(){
+    var selectedComp = app.project.activeItem; // get active comp
+    if (selectedComp == null || !(selectedComp instanceof CompItem)) {
+        alert("Select a composition");
+        return;
+    }
+    var selectedLayers = selectedComp.selectedLayers; // get selected layers
+    if (selectedLayers.length == 0){
+        alert("Select at least one layer");
+        return;
+    }
 
-function main() {
-    var selectedComp = app.project.activeItem;
-    var selectedLayers = selectedComp.selectedLayers;
-
-    var firstSelectedLayer = selectedLayers[0];
-    var timeIndicator = selectedComp.time;
-
-
-    //trim firstSelectedLayer's inPoint to timeIndicator
-    var oldOutPoint = firstSelectedLayer.outPoint;
-
-    firstSelectedLayer.inPoint = timeIndicator; 
-    firstSelectedLayer.outPoint = oldOutPoint; 
-
-    return;
-}
+    var timeIndicator = selectedComp.time; // get time indicator
+    for (var i = 0; i < selectedLayers.length; i++){
+        selectedLayers[i].outPoint = timeIndicator; // set out point of all layers
+    }
+})();
