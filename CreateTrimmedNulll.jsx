@@ -2,8 +2,14 @@
     function BindNullLayer(nullLayer, layer) {
         nullLayer.moveBefore(layer);  // move null above layer
         layer.parent = nullLayer;     // parent null to layer
-        nullLayer.threeDLayer = layer.threeDLayer;  //copy 3d attribute
 
+        // check if 3d layer
+        if (layer instanceof CameraLayer){
+            layer.threeDLayer = true;
+        } else {
+            nullLayer.threeDLayer = layer.threeDLayer;
+        }
+        
         // copy inPoint and outPoint
         nullLayer.inPoint = layer.inPoint;
         nullLayer.outPoint = layer.outPoint;
